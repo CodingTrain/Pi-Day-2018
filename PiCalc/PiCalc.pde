@@ -160,21 +160,20 @@ String pie;
 int counter = 1;
 
 void setup() {
-  size(2000, 400);
+  size(600, 400);
   pie = "3.";
 }
 
 void draw() {
   background(0);
-  for (int i = 0; i < 50; i++) {
+  //for (int i = 0; i < 50; i++) {
   int digit = getDigit(counter);
   pie += digit;
-  String[] output = new String[1];
-  output[0] = pie;
-  saveStrings(pie, "pi.txt");
+  //String[] output = new String[1];
+  //output[0] = pie;
+  //saveStrings(pie, "pi.txt");
   //println(pie);
   counter++;
-  }
+  //}
   text(pie, 0, 0, width, height);
-  
 }
