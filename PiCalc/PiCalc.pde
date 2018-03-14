@@ -159,22 +159,23 @@ int getDigit(int n) {
 String pie;
 int counter = 1;
 
+PrintWriter output;
+
 void setup() {
-  size(2000, 400);
+  output = createWriter("pi.txt"); 
   pie = "3.";
+  output.print("3.");
 }
 
 void draw() {
   background(0);
-  for (int i = 0; i < 50; i++) {
   int digit = getDigit(counter);
-  pie += digit;
-  String[] output = new String[1];
-  output[0] = pie;
-  saveStrings(pie, "pi.txt");
+  output.print(digit);  // Write the coordinate to the file
+  output.flush();  // Writes the remaining data to the file
+  //pie += digit;
   //println(pie);
   counter++;
-  }
-  text(pie, 0, 0, width, height);
-  
+  fill(255);
+  textAlign(CENTER);
+  text(counter,width/2,height/2);
 }
