@@ -1,17 +1,17 @@
 /*
  * Computation of the n'th decimal digit of \pi with very little memory.
  * Written by Fabrice Bellard on January 8, 1997.
- * 
+ *
  * We use a slightly modified version of the method described by Simon
  * Plouffe in "On the Computation of the n'th decimal digit of various
  * transcendental numbers" (November 1996). We have modified the algorithm
  * to get a running time of O(n^2) instead of O(n^3log(n)^3).
- * 
+ *
  * This program uses mostly integer arithmetic. It may be slow on some
  * hardwares where integer multiplications and divisons must be done
  * by software. We have supposed that 'int' has a size of 32 bits. If
  * your compiler supports 'long long' integers of 64 bits, you may use
- * the integer version of 'mul_mod' (see HAS_LONG_LONG).  
+ * the integer version of 'mul_mod' (see HAS_LONG_LONG).
  */
 
 
@@ -159,21 +159,23 @@ int getDigit(int n) {
 String pie;
 int counter = 1;
 
+PrintWriter output;
+
 void setup() {
-  size(600, 400);
+  output = createWriter("pi.txt");
   pie = "3.";
+  output.print("3.");
 }
 
 void draw() {
   background(0);
-  //for (int i = 0; i < 50; i++) {
   int digit = getDigit(counter);
-  pie += digit;
-  //String[] output = new String[1];
-  //output[0] = pie;
-  //saveStrings(pie, "pi.txt");
+  output.print(digit);  // Write the coordinate to the file
+  output.flush();  // Writes the remaining data to the file
+  //pie += digit;
   //println(pie);
   counter++;
-  //}
-  text(pie, 0, 0, width, height);
+  fill(255);
+  textAlign(CENTER);
+  text(counter,width/2,height/2);
 }
